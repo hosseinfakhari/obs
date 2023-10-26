@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+      POSTGRES_DB: observedb
+      POSTGRES_USER: observeuser
+      POSTGRES_PASSWORD: observepass
+    ports:
+      - "5432:5432"
+    volumes:
+      - post_volume:/var/lib/postgresql/data
+
+volumes:
+  post_volume:

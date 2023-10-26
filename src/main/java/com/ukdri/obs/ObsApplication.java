@@ -1,4 +1,4 @@
-package com.ukdri.obs.obs;
+package com.ukdri.obs;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
