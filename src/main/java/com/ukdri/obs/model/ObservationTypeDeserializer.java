@@ -10,14 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.IOException;
 
 public class ObservationTypeDeserializer extends StdDeserializer<ObservationType> {
-    @Autowired
-    ObservationTypeService observationTypeService;
-    public ObservationTypeDeserializer() {
-        this(null);
-    }
+    private final ObservationTypeService observationTypeService;
 
-    public ObservationTypeDeserializer(Class<?> vc) {
-        super(vc);
+    public ObservationTypeDeserializer(ObservationTypeService observationTypeService) {
+        super(ObservationType.class);
+        this.observationTypeService = observationTypeService;
     }
 
     @Override

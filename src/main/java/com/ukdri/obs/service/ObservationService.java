@@ -4,7 +4,6 @@ import com.ukdri.obs.model.Observation;
 import com.ukdri.obs.repository.ObservationRepository;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
