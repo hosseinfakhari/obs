@@ -1,20 +1,22 @@
 package com.ukdri.obs.model;
 
 import java.time.ZonedDateTime;
-import java.util.UUID;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "observations")
 public class Observation {
 
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
-    private String type;
+    @ManyToOne
+    @JoinColumn(name = "obs_type_id")
+    @JsonDeserialize(using = ObservationTypeDeserializer.class)
+    private ObservationType type;
 
     private ZonedDateTime date;
 
@@ -22,53 +24,43 @@ public class Observation {
 
     private double value;
 
-    private String unit;
-
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getType() {
+    public ObservationType getType() {
         return type;
-      }
-    
-      public void setType(String type) {
+    }
+
+    public void setType(ObservationType type) {
         this.type = type;
-      }
-    
-      public ZonedDateTime getDate() {
+    }
+
+    public ZonedDateTime getDate() {
         return date;
-      }
-    
-      public void setDate(ZonedDateTime date) {
+    }
+
+    public void setDate(ZonedDateTime date) {
         this.date = date;
-      }
-    
-      public int getPatient() {
+    }
+
+    public int getPatient() {
         return patient;
-      }
-    
-      public void setPatient(int patient) {
+    }
+
+    public void setPatient(int patient) {
         this.patient = patient;
-      }
-    
-      public double getValue() {
+    }
+
+    public double getValue() {
         return value;
-      }
-    
-      public void setValue(double value) {
+    }
+
+    public void setValue(double value) {
         this.value = value;
-      }
-    
-      public String getUnit() {
-        return unit;
-      }
-    
-      public void setUnit(String unit) {
-        this.unit = unit;
-      }
+    }
 }

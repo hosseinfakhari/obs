@@ -20,17 +20,16 @@ public class ObservationService {
     return observationRepository.findAll();
   }
 
-  public Observation getObservationById(UUID id) {
+  public Observation getObservationById(Integer id) {
     return observationRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Observation not found with id " + id)); 
   }
 
   public Observation createObservation(Observation observation) {
-    observation.setId(UUID.randomUUID());
     return observationRepository.save(observation);
   }
 
-  public Observation updateObservation(UUID id, Observation observationUpdate) {
+  public Observation updateObservation(Integer id, Observation observationUpdate) {
     Observation observation = getObservationById(id);
     observation.setType(observationUpdate.getType());
     observation.setDate(observationUpdate.getDate());
@@ -38,7 +37,7 @@ public class ObservationService {
     return observationRepository.save(observation);
   }
 
-  public void deleteObservation(UUID id) {
+  public void deleteObservation(Integer id) {
     observationRepository.deleteById(id);
   }
 

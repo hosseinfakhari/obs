@@ -1,7 +1,6 @@
 package com.ukdri.obs.controller;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,24 +31,24 @@ public class ObservationController {
     }
 
     @GetMapping("/{id}/")
-    public Observation getObservation(@PathVariable UUID id){
+    public Observation getObservation(@PathVariable Integer id){
         // pagination
         return observationService.getObservationById(id);
     }
 
     @PostMapping("/")
     public Observation CreateObservation(@RequestBody Observation observation) {
-        // validation
+        // validation / no empty value
         return observationService.createObservation(observation);
     }
 
     @PutMapping("/{id}/")
-    public Observation UpdateObservation(@PathVariable UUID id, @RequestBody Observation observation) {
+    public Observation UpdateObservation(@PathVariable Integer id, @RequestBody Observation observation) {
         return observationService.updateObservation(id, observation);
     }
 
     @DeleteMapping("/{id}/")
-    public ResponseEntity<HttpStatus> DeleteObservation(@PathVariable UUID id) {
+    public ResponseEntity<HttpStatus> DeleteObservation(@PathVariable Integer id) {
         observationService.deleteObservation(id);
         return ResponseEntity.ok().build();
     }
